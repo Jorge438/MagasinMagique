@@ -207,5 +207,23 @@ class MagasinTest {
         System.out.println(file_content);
     }
 
+    @Test
+    void testItemPouvoirsMagiques2() throws IOException {
+        Item[] items = new Item[] { new Item("Pouvoirs magiques", 1, 40) };
+        Magasin app = new Magasin(items);
+        System.out.println(app.items[0]);
+        app.updateItems();
+        app.updateItems();
+        assertEquals("Pouvoirs magiques", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(34, app.items[0].quality);
+        String string = ("Item name: " + app.items[0].name + " SellIn was 10 and now is: " + app.items[0].sellIn + ", Quality was 40 and now is: " + app.items[0].quality);
+
+        Path fileName = Path.of("C:\\Users\\gwendal.berriot\\Documents\\Tests\\test_output\\test_pass_pouvoirs_magiques.txt");
+        Files.writeString(fileName, string);
+        String file_content = Files.readString(fileName);
+        System.out.println(file_content);
+    }
+
 
 }
